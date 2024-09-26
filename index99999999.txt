@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir JSON</title>
+</head>
+<body>
+    <h1>Dados do JSON</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody id="data"></tbody>
+    </table>
+
+    <script>
+        fetch('https://raw.githubusercontent.com/GabrielGualberto/json-01/refs/heads/main/Lift%20-%20%20Valores%20Promocionais%20Atualizada.json') // 
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('data');
+                data.forEach(item => {
+                    const row = `<tr>
+                        <td>${item.name}</td>
+                        <td>${item.price}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Erro:', error));
+    </script>
+</body>
+</html>
